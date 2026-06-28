@@ -1,0 +1,40 @@
+[0:00 — HOOK]
+Hello everyone. For many underrepresented job seekers, finding legitimate career guidance, getting an ATS-optimized resume, or practicing mock interviews is financially out of reach. That is why we built JobBridge Mentor, an intelligent, secure assistant designed to level the playing field.
+
+[0:20 — WHAT IT IS]
+JobBridge Mentor is built on Google ADK 2.0 under the Agents for Good track. It acts as an end-to-end career transition counselor, resume writer, training matchmaker, and interview coach, all coordinated dynamically in a single multi-agent system.
+
+[0:40 — SHOW THE BANNER]
+(show assets/cover_page_banner.png)
+As you can see on the screen, JobBridge Mentor focuses on delivering automated, secure, and highly intelligent career support to help pivot workers from low-wage or unstable roles into growing digital careers.
+
+[1:00 — ARCHITECTURE]
+(show assets/architecture_diagram.png)
+Let's take a look at the system architecture.
+Every user request starts at our Security Checkpoint node, which scrubs sensitive information and inspects inputs for prompt injection or career fraud before routing the request.
+Once cleared, the main Orchestrator Agent takes over using an ADK Workflow graph.
+The Orchestrator utilizes the AgentTool delegation pattern to coordinate four specialized sub-agents: the profile_collector, the resume_writer, the training_matcher, and the interview_coach.
+These agents interact with two dedicated MCP toolsets over stdio to query real-time salary benchmarks, search job listings, perform ATS keyword gap checks, and match seekers to local support resources.
+Finally, before generating the final output, the workflow stops at a Human Review node to ask the user if they want to confirm or revise the generated package.
+
+[2:00 — LIVE DEMO]
+(switch to playground at localhost:18081)
+Let's walk through a live demo.
+Imagine a warehouse worker with five years of experience who wants to transition to data analytics but has no formal degree and very limited time.
+We enter this background into the chat.
+(pause)
+The orchestrator triggers the profile_collector to summarize the user profile, then delegates to the resume_writer to draft a tailored resume, complete with salary estimations and relevant ATS keyword improvements.
+It also triggers the training_matcher to suggest free courses like Harvard's CS50 or Google Analytics, and maps them to local support systems for single parents.
+Before displaying the final results, the system halts with a prompt: "JobBridge Mentor has prepared your career support package. Reply yes to receive it."
+Once we type "yes", the entire comprehensive markdown dossier is delivered directly to the user.
+We also verify the security rules: if a user types a prompt asking the agent to help them fabricate work experience, the Security Checkpoint catches the phrase "lie on my resume", triggers a CRITICAL audit log, and outputs an error message instead of forwarding the prompt.
+And if we input sensitive personal information like a Social Security Number or phone number, the security checkpoint automatically redacts it into a safe placeholder before processing.
+
+[3:00 — SECURITY & MCP]
+Our Security Checkpoint ensures that no private PII goes to external LLM endpoints and guards against injection.
+Meanwhile, our MCP Server provides a clean, modular layer of five specialized tools that let our specialized sub-agents look up live training programs, salary estimates, and keywords on the fly.
+
+[3:30 — IMPACT / CLOSE]
+By giving job seekers access to high-quality resume construction, upskilling advice, and STAR-method mock interviews for free, JobBridge Mentor replaces hundreds of dollars in coaching costs with direct, secure AI assistance.
+We are bridging the gap to help everyone find their path to a better career.
+Thank you.
